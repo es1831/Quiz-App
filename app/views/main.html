@@ -28,18 +28,38 @@
         <form ng-repeat ="question in quiz | orderBy: 'difficulty'" action="">
         <h2>{{$index+1}}. {{question.q}}</h2>
           <ul id='question-list'>
-            <li ng-repeat = "option in question.options"><input type="radio" name="" value="" ng-click ="check(question.answer, option.value)"> {{option.value}} </li>
+            <li ng-repeat = "option in question.options"><input type="radio" name="myAnswer" value="" ng-click ="check(question.answer, option.value)"> {{option.value}} </li>
           </ul>
           <p>Remaining Questions {{quiz.length- $index}}</p>
         </form>
 
+        <br>
+
+        <h1> Add Mo' Questions </h1>
+
+
         <form>
           <label>Type Yo Question!</label>
-          <input type= "text" name = 'question'>
-          <label>Add a Choice Yo!</label>
-          <input type= "text" name = 'choice'>
-           <input type='button' value= "Add">
-          <input type='submit' value= "Submit">
+          <input type= "text" name = 'question' ng-model="newQuestion.q">
+          <label>Difficulty Level</label>
+          <select ng-model="newQuestion.difficulty">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+            <label>Whats yo' answer?</label>
+            <input type= "text" name = 'choice' ng-model="newQuestion.answer">
+            <h3>Make it multiple choice! Be sure to include your answer as an option..</h3>
+          <div ng-repeat="optionNum in optionNums |  limitTo: 4">
+            <label>Add a Choice Yo!</label>
+            <input type= "text" name = 'choice' ng-model="newQuestion.options[$index].value">
+<!--             <label>This is the answer</label>
+            <input type="radio" name="nayme" ng-model="newQuestion.answer"> -->
+          </div>
+           <input type='button' ng-click='optionAdd()' value= "Add Option">
+          <input type='submit' value= "Submit" ng-click='submit()'>
 
         </form>
       </div>

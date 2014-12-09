@@ -56,5 +56,15 @@ angular.module('quizApp')
 	}
 
 	$scope.points = 0;
+	$scope.optionNums = [{'type': 'choice'}];
+
+	$scope.optionAdd = function(){
+		$scope.optionNums.push({'type': 'choice'});
+	};
+	$scope.newQuestion = {};
+	$scope.submit = function(){
+		$scope.quiz.push($scope.newQuestion);
+		$scope.newQuestion = {};
+	};
 
   });
