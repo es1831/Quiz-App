@@ -28,7 +28,7 @@
         <form ng-repeat ="question in quiz | orderBy: 'difficulty'" action="">
         <h2>{{$index+1}}. {{question.q}}</h2>
           <ul id='question-list'>
-            <li ng-repeat = "option in question.options"><input type="radio" name="myAnswer" value="" ng-click ="check(question.answer, option.value)"> {{option.value}} </li>
+            <li ng-repeat = "option in question.options"><input type="radio" name="myAnswer" value="" ng-click ="check(question, option.value)"> {{option.value}} </li>
           </ul>
           <p>Remaining Questions {{quiz.length- $index}}</p>
         </form>
