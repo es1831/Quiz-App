@@ -69,6 +69,7 @@
  	$scope.optionNums.push({'type': 'choice'});
  };
  $scope.newQuestion = {};
+ 
  $scope.submit = function(){
  	$scope.quiz.push($scope.newQuestion);
  	$scope.newQuestion = {};

@@ -49,14 +49,14 @@
             <option>4</option>
             <option>5</option>
           </select>
-            <label>Whats yo' answer?</label>
-            <input type= "text" name = 'choice' ng-model="newQuestion.answer">
+<!--             <label>Whats yo' answer?</label>
+            <input type= "text" name = 'choice' ng-model="newQuestion.answer"> -->
             <h3>Make it multiple choice! Be sure to include your answer as an option..</h3>
           <div ng-repeat="optionNum in optionNums |  limitTo: 4">
             <label>Add a Choice Yo!</label>
             <input type= "text" name = 'choice' ng-model="newQuestion.options[$index].value">
-<!--             <label>This is the answer</label>
-            <input type="radio" name="nayme" ng-model="newQuestion.answer"> -->
+            <label>This is the answer</label>
+            <input type="radio" name="nayme" ng-model="newQuestion.answer" ng-value = "newQuestion.options[$index].value">
           </div>
            <input type='button' ng-click='optionAdd()' value= "Add Option">
           <input type='submit' value= "Submit" ng-click='submit()'>
