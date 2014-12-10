@@ -13,32 +13,35 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
- 
+
     <div class="container">
-      <div class="jumbotron question">
+      <div class="jumbotron question" ng-controller= "UserCtrl">
         <div>
-<!--           <li ng-repeat = "question in quiz">
+<!--      <li ng-repeat = "question in quiz">
             <strong>{{question.q}}</strong>
           </li> -->
 
-          <h1>POINTZZZZ: {{points}}</h1>
+          <h1 ng-show= "show">POINTZZZZ: {{points}}</h1>
+          <h1 ng-show= "!show">QUIZ YOOOOO</h1>
+
+          <h4>TIMEZZZZZ: {{time}} secs</h4><button ng-click="show=!show; timer()">STart</button>
         </div>
 
-
-        <form ng-repeat ="question in quiz | orderBy: 'difficulty'" action="">
-        <h2>{{$index+1}}. {{question.q}}</h2>
+<div>
+        <form ng-show = "show" ng-repeat ="question in quiz | orderBy: 'difficulty'" action="">
+          <h2>{{$index+1}}. {{question.q}}</h2>
           <ul id='question-list'>
-            <li ng-repeat = "option in question.options"><input type="radio" name="myAnswer" value="" ng-click ="check(question, option.value)"> {{option.value}} </li>
+            <li ng-repeat = "option in question.options"><input type="radio" name="myAnswer" value="" ng-click ="check(question, option.value); endQuiz(quiz.length)"> {{option.value}} </li>
           </ul>
           <p>Remaining Questions {{quiz.length- $index}}</p>
         </form>
 
         <br>
 
-        <h1> Add Mo' Questions </h1>
+        <h1 ng-show='otherShow'> Add Mo' Questions to this .Quiz</h1>
 
 
-        <form>
+        <form ng-show='otherShow'>
           <label>Type Yo Question!</label>
           <input type= "text" name = 'question' ng-model="newQuestion.q">
           <label>Difficulty Level</label>
@@ -49,24 +52,28 @@
             <option>4</option>
             <option>5</option>
           </select>
-<!--             <label>Whats yo' answer?</label>
-            <input type= "text" name = 'choice' ng-model="newQuestion.answer"> -->
-            <h3>Make it multiple choice! Be sure to include your answer as an option..</h3>
+<!--      <label>Whats yo' answer?</label>
+          <input type= "text" name = 'choice' ng-model="newQuestion.answer"> -->
+          <h3>Make it multiple choice! Be sure to include your answer as an option..</h3>
           <div ng-repeat="optionNum in optionNums |  limitTo: 4">
             <label>Add a Choice Yo!</label>
             <input type= "text" name = 'choice' ng-model="newQuestion.options[$index].value">
             <label>This is the answer</label>
             <input type="radio" name="nayme" ng-model="newQuestion.answer" ng-value = "newQuestion.options[$index].value">
           </div>
-           <input type='button' ng-click='optionAdd()' value= "Add Option">
+          <input type='button' ng-click='optionAdd()' value= "Add Option">
           <input type='submit' value= "Submit" ng-click='submit()'>
 
         </form>
+        <div ng-show= "show" >
+        <button ng-click="show=!show; otherShow=!otherShow; time = 0">Submit QUizzzzzzzzzzzzz</button>
       </div>
- 
+      </div>
+      </div>
+
     </div><!-- /.container -->
- 
- 
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
